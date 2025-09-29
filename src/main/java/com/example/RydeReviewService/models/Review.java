@@ -14,27 +14,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @Table(name="bookingreview")
-public class Review {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Review extends BaseModel{
 
     @Column(nullable = false)
     private String content;
 
     private double rating;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
 
 }
