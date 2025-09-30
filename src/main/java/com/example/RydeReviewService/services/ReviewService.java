@@ -1,10 +1,10 @@
 package com.example.RydeReviewService.services;
 
+import com.example.RydeReviewService.models.Booking;
+import com.example.RydeReviewService.repositories.BookingRepository;
 import com.example.RydeReviewService.models.Review;
 import com.example.RydeReviewService.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -16,10 +16,13 @@ public class ReviewService implements CommandLineRunner{
 
     private ReviewRepository reviewRepository;
 
+    private BookingRepository bookingRepository;
 
-    public ReviewService(ReviewRepository reviewRepository){
+    public ReviewService(BookingRepository bookingRepository , ReviewRepository reviewRepository){
+        this.bookingRepository = bookingRepository;
         this.reviewRepository = reviewRepository;
     }
+
 
 
     @Override
@@ -30,9 +33,17 @@ public class ReviewService implements CommandLineRunner{
                 .build();
 
 
-        Review newReview = reviewRepository.save(r);
+        Booking b = Booking
+                .builder()
+                .review(r)
+                .endTime(new Date())
+                .build();
 
-        System.out.println(newReview.toString());
+
+//        Review newReview = reviewRepository.save(r);
+        bookingRepository.save(b);
+
+//        System.out.println(newReview.toString());
     }
 
     public void printAllReviews(){
