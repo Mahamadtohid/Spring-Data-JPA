@@ -25,5 +25,5 @@ public class Driver extends BaseModel{
     //1 : many - drivers has many bookings
 
     @OneToMany(mappedBy = "driver")
-    private List<Booking> bookings = new ArrayList<>();
+    private List<Booking> dBookings = new ArrayList<>();
 }
