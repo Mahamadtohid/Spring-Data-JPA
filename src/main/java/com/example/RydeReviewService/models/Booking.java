@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,8 +15,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking extends BaseModel{
 
-    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
-    private Review review; // Defined a 1 : 1 relationship between booking and review
+    @OneToOne(cascade ={ CascadeType.PERSIST , CascadeType.REMOVE})
+    private Review review;
 
     @Enumerated(value = EnumType.STRING)// Stores enum as it is  string in database default in tinyint
     private BookingStatus bookingStatus;

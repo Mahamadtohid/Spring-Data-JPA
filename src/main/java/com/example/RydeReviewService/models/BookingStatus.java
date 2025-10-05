@@ -8,6 +8,8 @@ public enum BookingStatus {
 
     CAB_ARRIVED,
 
+    ASSIGNING_DRIVER,
+
     IN_RIDE,
 
     COMPLETE

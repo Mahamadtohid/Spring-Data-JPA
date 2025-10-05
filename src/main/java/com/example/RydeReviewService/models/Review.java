@@ -23,4 +23,8 @@ public class Review extends BaseModel{
 
     private double rating;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(nullable = false)
+    private Booking booking; // Defined a 1 : 1 relationship between booking and review
+
 }

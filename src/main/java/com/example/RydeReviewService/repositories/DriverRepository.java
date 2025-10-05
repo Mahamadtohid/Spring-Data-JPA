@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
-    Optional<Driver> findByIdAndLicenseNumber(Long Id , String licenceNuber);
+
 }
