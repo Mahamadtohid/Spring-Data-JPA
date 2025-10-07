@@ -15,8 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Booking extends BaseModel{
 
-    @OneToOne(cascade ={ CascadeType.PERSIST , CascadeType.REMOVE})
-    private Review review;
+//    @OneToOne(cascade ={ CascadeType.PERSIST , CascadeType.REMOVE})
+//    private Review review;
+        @OneToOne(mappedBy = "booking")
+        private Review review;
 
     @Enumerated(value = EnumType.STRING)// Stores enum as it is  string in database default in tinyint
     private BookingStatus bookingStatus;

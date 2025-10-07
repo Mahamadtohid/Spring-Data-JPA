@@ -24,8 +24,19 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r from Booking b join Review r on b.review = r where b.id = :bookingId")
     Review findReviewByBookingId(Long bookingId);
 
-//    @Query("select new com.example.rydereviewservice.repositories() from Booking b join Passenger p join Driver d")
-//    Custom findDriverPassengerReviewByBookingId(Long bookingId);
+    Review findReviewById(Long id);
+
+    List<Review> findAll();
+
+    void deleteById(Long id);
+
+    Review save(Review review);
+
+    @Query(value = "DELETE r from bookingreview r join booking b on b.id = r.booking_id" , nativeQuery = true)
+    void deleteByBookingId(Long id);
+
+//    Review findByBookingId(Long Id);
+
 }
 
 //class Custom{
@@ -44,3 +55,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 //
 //    }
 //}
+
+
+//    @Query("select new com.example.rydereviewservice.repositories() from Booking b join Passenger p join Driver d")
+//    Custom findDriverPassengerReviewByBookingId(Long bookingId);

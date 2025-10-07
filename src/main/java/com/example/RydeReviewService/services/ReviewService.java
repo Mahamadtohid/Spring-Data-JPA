@@ -10,9 +10,13 @@ public interface ReviewService {
 
     public List<Review> getAllReviews();
 
-    public boolean deleteReview(Long id);
-
     public Review createReview(Review review);
 
-    public Review updateReview(Review review);
+    public Review getReviewByBooking(Long id);
+
+    public void deleteReview(Long id);
+
+    public void deleteReviewByBooking(Long id);
+
+//    public Review updateReview(Review review);
 }

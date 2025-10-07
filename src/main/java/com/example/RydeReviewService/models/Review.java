@@ -1,5 +1,6 @@
 package com.example.RydeReviewService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,8 +24,13 @@ public class Review extends BaseModel{
 
     private double rating;
 
-    @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(nullable = false)
+    @OneToOne(cascade = {CascadeType.ALL} , fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_id", nullable = false, unique = true)
+    @JsonIgnore
     private Booking booking; // Defined a 1 : 1 relationship between booking and review
 
 }
+
+//    @OneToOne(cascade = {CascadeType.ALL})
+//    @JoinColumn(nullable = false)
+//    private Booking booking; // Defined a 1 : 1 relationship between booking and review
