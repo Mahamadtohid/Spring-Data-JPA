@@ -3,6 +3,7 @@ package com.example.RydeReviewService.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -27,6 +28,7 @@ public class Review extends BaseModel{
     @OneToOne(cascade = {CascadeType.ALL} , fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id", nullable = false, unique = true)
     @JsonIgnore
+//    @Fetch(fe)
     private Booking booking; // Defined a 1 : 1 relationship between booking and review
 
 }
