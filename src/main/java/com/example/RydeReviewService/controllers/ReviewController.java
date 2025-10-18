@@ -4,8 +4,12 @@ import com.example.RydeReviewService.models.Review;
 import com.example.RydeReviewService.repositories.ReviewRepository;
 import com.example.RydeReviewService.services.ReviewServiceImp;
 import jakarta.websocket.server.PathParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/review")
@@ -20,6 +24,12 @@ public class ReviewController {
         this.reviewService = reviewService;
     }
 
+    @GetMapping
+    public List<Review> getAllReviews(){
+
+        return reviewService.getAllReviews();
+    }
+
     @GetMapping("/{reviewId}")
     public Review getReview(@PathVariable("reviewId") Long id){
             Review myReview = reviewService.getReview(id);
@@ -27,11 +37,11 @@ public class ReviewController {
     }
 
     @PostMapping()
-    public Review createNewReview(@RequestBody Review review){
+    public ResponseEntity<Review> createNewReview(@Validated @RequestBody Review review){
 
         Review newReview = reviewService.createReview(review);
 
-        return newReview;
+        return new ResponseEntity<>(newReview , HttpStatus.OK);
 
     }
 
@@ -53,7 +63,6 @@ public class ReviewController {
             return false;
         }
 
-//        return false;
     }
 
     @DeleteMapping("/booking/{bookingId}")
@@ -65,14 +74,6 @@ public class ReviewController {
             return false;
         }
     }
-
-
-
-//    @GetMapping
-//    public String getMsg(){
-//        return "Haa bhai sab thik chal ra hai.... baki API's try karle";
-//    }
-
 
 
 

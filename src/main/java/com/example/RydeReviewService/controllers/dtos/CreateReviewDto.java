@@ -10,5 +10,5 @@ public class CreateReviewDto {
 
     private double rating;
 
-    private long bookingId;
+    private Long bookingId;
 }
